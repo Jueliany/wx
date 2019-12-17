@@ -44,59 +44,53 @@
 	flex: 1;
 	margin-left: 30rpx;
 }
-.shopping-item-text view{
+.shoping-name{
 	font-size: 28rpx;
 	line-height: 40rpx;
   text-overflow:ellipsis;
-display:-webkit-box;
--webkit-box-orient:vertical;
--webkit-line-clamp:2;
-overflow:hidden;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  overflow:hidden;
 }
 .shoping-item-bottom{
 	display: flex;
-	flex-direction: column;
-}
-.shoping-age-line{
-	border-top: 2rpx dashed #e5e5e5;
-	display: flex;
 	flex-direction: row;
-	height: 72rpx;
-	line-height: 78rpx;
-	flex: 1;
-	justify-content: flex-end;
-	padding-right: 20rpx;
 }
-.shoping-age-item{
-	display: flex;
-	flex-direction: row;
-	margin-left: 60rpx;
+.shoping-item-btm{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+	overflow: hidden;
 }
-.shoping-age-title{
-	font-size: 24rpx;
+.shoping-price{
+  color: red;
+  line-height: 70rpx;
 }
-.shoping-age-num{
+.shoping-num{
 	display: flex;
 	flex-direction: row;
 	margin-top: 12rpx;
-	height: 48rpx;
+	height: 46rpx;
 	border: 01rpx solid #e5e5e5;
 	border-radius: 6rpx;
 	overflow: hidden;
 }
-.shoping-age-set{
-	font-size: 30rpx;
+.shoping-set{
+	font-size: 28rpx;
 	display: block;
-	height: 46rpx;
-	line-height: 46rpx;
-	width: 46rpx;
+	height: 44rpx;
+	line-height: 44rpx;
+	width: 50rpx;
+  text-align: center;
 	background-color: #f1f1f1;
 }
-.shoping-age-sum{
-	font-size: 30rpx;
-	width: 74rpx;
-	height: 46rpx;
-	line-height: 46rpx;
+.shoping-sum{
+	font-size: 22rpx;
+	width: 80rpx;
+	height: 44rpx;
+  min-height: 44rpx;
+	line-height: 42rpx;
 	text-align: center;
 }
 .add{

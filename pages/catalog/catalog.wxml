@@ -11,20 +11,15 @@
         <view class="item {{ currentCategory.id == item.id ? 'active' : ''}}" wx:for="{{navList}}"  data-id="{{item.id}}" data-index="{{index}}" bindtap="switchCate">{{item.name}}</view>
     </scroll-view>
     <scroll-view class="cate" scroll-y="true">
-        <navigator url="url" class="banner">
-            <image class="image" src="{{currentCategory.wap_banner_url}}"></image>
-            <view class="txt">{{currentCategory.front_name}}</view>
-        </navigator>
-        <view class="hd">
-            <text class="line"></text>
-            <text class="txt">{{currentCategory.name}}分类</text>
-            <text class="line"></text>
-        </view>
-        <view class="bd">
-            <navigator url="/pages/category/category?id={{item.id}}" class="item {{(index+1) % 3 == 0 ? 'last' : ''}}" wx:for="{{currentCategory.subCategoryList}}">
-                <image class="icon" src="{{item.wap_banner_url}}"></image>
-                <text class="txt">{{item.name}}</text>
-            </navigator>
+        <view class="dd">
+          <navigator class="item {{(iindex + 1) % 2 == 0 ? 'item-b' : ''}}" url="/pages/goods/goods?id={{iitem.id}}" wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex">
+            <image class="img" src="{{iitem.list_pic_url}}" background-size="cover"></image>
+            <text class="name">{{iitem.name}}</text>
+            <view class="price-list">
+              <text class="old-price">￥{{iitem.retail_price}}</text>
+              <text class="price">￥{{iitem.retail_price}}</text>
+            </view>
+          </navigator>
         </view>
     </scroll-view>
   </view>

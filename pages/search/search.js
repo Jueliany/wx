@@ -8,7 +8,13 @@ Page({
     keywrod: '',
     searchStatus: true,
     goodsList: [
-      { id: 1, list_pic_url: "http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png", name: '桌子', retail_price: 123}
+      { id: 1, list_pic_url: "https://img14.360buyimg.com/n7/jfs/t1/32578/25/6630/199318/5c9086cbE7ec1f26a/8c50d6ea71d17ee9.jpg", name: 'Apple iPad Air 3 2019年新款平板电脑 10.5英寸（64G WLAN版/A12芯片/Retina', retail_price: 123 },
+      { id: 1, list_pic_url: "https://img14.360buyimg.com/n7/jfs/t1/32578/25/6630/199318/5c9086cbE7ec1f26a/8c50d6ea71d17ee9.jpg", name: 'Apple iPad Air 3 2019年新款平板电脑 10.5英寸（64G WLAN版/A12芯片/Retina', retail_price: 123 },
+      { id: 1, list_pic_url: "https://img14.360buyimg.com/n7/jfs/t1/32578/25/6630/199318/5c9086cbE7ec1f26a/8c50d6ea71d17ee9.jpg", name: 'Apple iPad Air 3 2019年新款平板电脑 10.5英寸（64G WLAN版/A12芯片/Retina', retail_price: 123 },
+      { id: 1, list_pic_url: "https://img14.360buyimg.com/n7/jfs/t1/32578/25/6630/199318/5c9086cbE7ec1f26a/8c50d6ea71d17ee9.jpg", name: 'Apple iPad Air 3 2019年新款平板电脑 10.5英寸（64G WLAN版/A12芯片/Retina', retail_price: 123 },
+      { id: 1, list_pic_url: "https://img14.360buyimg.com/n7/jfs/t1/32578/25/6630/199318/5c9086cbE7ec1f26a/8c50d6ea71d17ee9.jpg", name: 'Apple iPad Air 3 2019年新款平板电脑 10.5英寸（64G WLAN版/A12芯片/Retina', retail_price: 123 },
+      { id: 1, list_pic_url: "https://img14.360buyimg.com/n7/jfs/t1/32578/25/6630/199318/5c9086cbE7ec1f26a/8c50d6ea71d17ee9.jpg", name: 'Apple iPad Air 3 2019年新款平板电脑 10.5英寸（64G WLAN版/A12芯片/Retina', retail_price: 123 },
+      { id: 1, list_pic_url: "https://img14.360buyimg.com/n7/jfs/t1/32578/25/6630/199318/5c9086cbE7ec1f26a/8c50d6ea71d17ee9.jpg", name: 'Apple iPad Air 3 2019年新款平板电脑 10.5英寸（64G WLAN版/A12芯片/Retina', retail_price: 123 },
     ],
     helpKeyword: [],
     historyKeyword: [],

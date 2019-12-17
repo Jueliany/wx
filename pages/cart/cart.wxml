@@ -9,20 +9,17 @@
 					<view class="shopping-item-right">
 						<image class="shopping-item-pic" src="{{item.imgListUrl}}"></image>
 						<view class="shopping-item-text">
-							<view>{{item.name}}</view>
+							<view class="shoping-name">{{item.name}}</view>
+              <view class="shoping-item-btm">
+                <view class="shoping-price">1999</view>
+                <view class="shoping-num">
+                  <view class="shoping-set del canClick"  bindtap="del(index,index1)">-</view>
+                  <input class="shoping-sum" value="{{item.num}}" readonly="true" type="text" name=""/>
+                  <view class="shoping-set add canClick" bindtap="add(index,index1)" >+</view>
+                </view>
+              </view>
 						</view>
 					</view>
-				</view>
-				<view class="shoping-item-bottom">
-						<view class="shoping-age-line" >
-							<view class="shoping-age-item">
-                  <view class="shoping-age-num">
-                    <button class="shoping-age-set del canClick"  bindtap="del(index,index1)">-</button>
-                    <input class="shoping-age-sum" value="{{item.num}}" readonly="true" type="text" name=""/>
-                    <button class="shoping-age-set add canClick" bindtap="add(index,index1)" >+</button>
-                  </view>
-							</view>
-						</view>
 				</view>
 			</view>
 		</view>

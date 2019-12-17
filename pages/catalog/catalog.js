@@ -14,6 +14,12 @@ Page({
       { id: 6, name: '手机平板' }
     ],
     categoryList: [],
+    goodsList: [
+      { id: 1, list_pic_url: "http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png", name: '桌子', retail_price: 123, oldPrice: 299 },
+      { id: 1, list_pic_url: "http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png", name: '桌子', retail_price: 123, oldPrice: 299 },
+      { id: 1, list_pic_url: "http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png", name: '桌子', retail_price: 123, oldPrice: 299 },
+      { id: 1, list_pic_url: "http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png", name: '桌子', retail_price: 123, oldPrice: 299 },
+    ],
     currentCategory: {id: 1},
     scrollLeft: 0,
     scrollTop: 0,
