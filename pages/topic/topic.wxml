@@ -1,0 +1,15 @@
+<!--pages/topic/topic.wxml-->
+<view>
+  <view class="cate-item1">
+    <view class="b">
+      <navigator class="item {{(iindex + 1) % 2 == 0 ? 'item-b' : ''}}" url="/pages/goods/goods?id={{iitem.id}}" wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex">
+        <image class="img" src="{{iitem.list_pic_url}}" background-size="cover"></image>
+        <text class="name">{{iitem.name}}</text>
+        <view class="price-list">
+          <text class="old-price">￥{{iitem.retail_price}}</text>
+          <text class="price">￥{{iitem.retail_price}}</text>
+        </view>
+      </navigator>
+    </view>
+  </view>
+</view>

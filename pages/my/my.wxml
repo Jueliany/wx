@@ -1,0 +1,51 @@
+<!--pages/my_order/my_order.wxml-->
+<view class="container">
+  <!--头像-->
+  <view class="header">
+    <image src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4024738341,129511458&fm=26&gp=0.jpg" class="header_image" mode="aspectFill"></image>
+    <!--<open-data type="userAvatarUrl"></open-data>-->
+  </view>
+
+  <!--订单 待付款 退款订单-->
+  <view class="my-order-area">
+    <text class="body_txt1">我的订单</text>
+    
+  </view>
+
+  <view class="body_2">
+    <view class="item_1" catchtap="goinsurance">
+      <view class="item_11 noline">
+        <image src="../../static/images/my_icon_insurance.png" class="item_imgs"></image>
+        <text>我的售后</text>
+      </view>
+      <image src="../../static/images/go.png" class="item_icon"></image>
+    </view>
+
+    <view class="item_1"  catchtap="gophone">
+      <view class="item_11">
+        <image src="../../static/images/my_icon_phone.png" class="item_imgs"></image>
+        <text>收货地址</text>
+      </view>
+      <image src="../../static/images/go.png" class="item_icon"></image>
+    </view>
+
+    <view class="item_1"  catchtap="gocontact">
+      <view class="item_11">
+        <image src="../../static/images/my_icon_coupon.png" class="item_imgs"></image>
+        <text>优惠券</text>
+      </view>
+      <image src="../../static/images/go.png" class="item_icon"></image>
+    </view> 
+
+    <!-- 优惠券 -->
+    <view class="item_1"  catchtap="gocoupon">
+      <view class="item_11">
+        <image src="../../static/images/my_icon_contact.png" class="item_imgs"></image>
+        <text>联系我们</text>
+      </view>
+      <image src="../../static/images/go.png" class="item_icon"></image>
+    </view> 
+
+  </view>
+
+</view>

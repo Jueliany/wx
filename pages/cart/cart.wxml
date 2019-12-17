@@ -1,0 +1,46 @@
+<!--pages/cart/cart.wxml-->
+<view class='container'>
+		<view class="shopping-list">
+			<!-- 有效商品 -->
+			<view class="shopping-item" wx:for="{{cartList}}"  data-id="{{item.id}}" data-index="{{index}}">
+				<view class="shoping-item-top">
+					<image wx:if="{{editStatus}}" class="shopping-left-icon" bindtap="chooseDeleteProduct(index)" src="{{item.choose2 ?'../../static/images/multiple_selected.png':'../../static/images/multiple_selected.png'}}"></image>
+					<image wx:else class="shopping-left-icon" bindtap="chooseProduct(index)" src="{{item.choose1 ?'../../static/images/multiple_selected.png':'../../static/images/multiple_selected.png'}}"></image>
+					<view class="shopping-item-right">
+						<image class="shopping-item-pic" src="{{item.imgListUrl}}"></image>
+						<view class="shopping-item-text">
+							<view>{{item.name}}</view>
+						</view>
+					</view>
+				</view>
+				<view class="shoping-item-bottom">
+						<view class="shoping-age-line" >
+							<view class="shoping-age-item">
+                  <view class="shoping-age-num">
+                    <button class="shoping-age-set del canClick"  bindtap="del(index,index1)">-</button>
+                    <input class="shoping-age-sum" value="{{item.num}}" readonly="true" type="text" name=""/>
+                    <button class="shoping-age-set add canClick" bindtap="add(index,index1)" >+</button>
+                  </view>
+							</view>
+						</view>
+				</view>
+			</view>
+		</view>
+		<!-- 购物车信息 -->
+		<view wx:if="{{editStatus}}" class='shopping-bottom'>
+	    <view class='shopping-price'>
+	      <text class='shopping-cur'>￥</text>
+	      <text class='shopping-money'>{{priceSum}}</text>
+	    </view>
+	    <view  class='shopping-button' bindtap="goBooking">立即下单</view>
+	  </view>
+	  <view wx:else class='shopping-bottom'>
+	    <view  class='shopping-delete-button' bindtap="delProduct">删除</view>
+	  </view>
+	  <!-- 购物车为空 -->
+	  <view class="shopping-no" wx:if="{{carLeng}}">
+	  	<image src="../../static/images/no.png"></image>
+	  	<h2>购物车竟然是空的</h2>
+	  	<view>“再忙，也要记得出去玩哦~”</view>
+	  </view>
+	</view>
