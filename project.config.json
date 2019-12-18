@@ -56,8 +56,8 @@
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/catalog/catalog",
-					"pathName": "pages/catalog/catalog",
+					"name": "pages/cart/cart",
+					"pathName": "pages/cart/cart",
 					"query": "",
 					"scene": null
 				}

@@ -12,7 +12,8 @@
     "pages/booking/booking",
     "pages/orderDetail/orderDetail",
     "pages/orderList/orderList",
-    "pages/coupon/coupon"
+    "pages/coupon/coupon",
+    "pages/address/address"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -14,4 +14,29 @@
       </navigator>
     </swiper-item>
   </swiper>
+  <image class="main-im"  mode='widthFix' src="../../static/images/main.jpg"></image>
+  <view class="main-hot">
+    <view class="main-hot-top">
+      <image class="pic-left-d" src="../../static/images/home_point.png"></image>
+      <text>热卖推荐</text>
+      <image src="../../static/images/home_point.png"></image>
+    </view>
+     <view class='main-list'>
+      <block wx:for="{{hotGoods}}" wx:key="*this">
+        <!-- 普通商品 -->
+        <block >
+          <navigator class='main-item' url="/pages/goods/goods" data-id="{{item.id}}" >
+            <image src='{{item.productPicURL}}'></image>
+            <view class='main-item-right'>
+              <text class='main-title'>{{item.productTitle}}</text>
+              <view >
+                <text class='main-price'>￥{{item.price}}</text>
+                <text class='old-price'>￥{{item.price}}</text>
+              </view>
+            </view>
+          </navigator>
+        </block>
+      </block>
+    </view>
+  </view>
 </view>

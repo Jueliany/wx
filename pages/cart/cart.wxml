@@ -1,43 +1,79 @@
-<!--pages/cart/cart.wxml-->
-<view class='container'>
-		<view class="shopping-list">
-			<!-- 有效商品 -->
-			<view class="shopping-item" wx:for="{{cartList}}"  data-id="{{item.id}}" data-index="{{index}}">
-				<view class="shoping-item-top">
-					<image wx:if="{{editStatus}}" class="shopping-left-icon" bindtap="chooseDeleteProduct(index)" src="{{item.choose2 ?'../../static/images/multiple_selected.png':'../../static/images/multiple_selected.png'}}"></image>
-					<image wx:else class="shopping-left-icon" bindtap="chooseProduct(index)" src="{{item.choose1 ?'../../static/images/multiple_selected.png':'../../static/images/multiple_selected.png'}}"></image>
-					<view class="shopping-item-right">
-						<image class="shopping-item-pic" src="{{item.imgListUrl}}"></image>
-						<view class="shopping-item-text">
-							<view class="shoping-name">{{item.name}}</view>
-              <view class="shoping-item-btm">
-                <view class="shoping-price">1999</view>
-                <view class="shoping-num">
-                  <view class="shoping-set del canClick"  bindtap="del(index,index1)">-</view>
-                  <input class="shoping-sum" value="{{item.num}}" readonly="true" type="text" name=""/>
-                  <view class="shoping-set add canClick" bindtap="add(index,index1)" >+</view>
+<view class="container">
+  <!-- <view class="service-policy">
+    <view class="item">30天无忧退货</view>
+    <view class="item">48小时快速退款</view>
+    <view class="item">满88元免邮费</view>
+  </view> -->
+  <view class="no-cart" wx:if="{{cartGoods.length <= 0}}">
+    <view class="c">
+      <image src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/noCart-a8fe3f12e5.png" />
+      <text>去添加点什么吧</text>
+    </view>
+  </view>
+  <view class="cart-view" wx:if="{{cartGoods.length > 0}}">
+    <view class="list">
+      <view class="group-item">
+        <view class="goods">
+          <view class="item {{isEditCart ? 'edit' : ''}}" wx:for="{{cartGoods}}" wx:key="{{item.id}}">
+            <view class="checkbox {{item.checked ? 'checked' : ''}}" bindtap="checkedItem" data-item-index="{{index}}"></view>
+            <view class="cart-goods">
+              <image class="img" src="{{item.list_pic_url}}"></image>
+              <view class="info">
+                <view class="t">
+                  <text class="name">{{item.goods_name}}</text>
+                  <text class="num">x{{item.number}}</text>
+                </view>
+                <view class="attr">{{ isEditCart ? '已选择:' : ''}}{{item.goods_specifition_name_value}}</view>
+                <view class="b">
+                  <text class="price">￥{{item.retail_price}}</text>
+                  <view class="selnum">
+                    <view class="cut" bindtap="cutNumber" data-item-index="{{index}}">-</view>
+                    <input value="{{item.number}}" class="number" disabled="true" type="number" />
+                    <view class="add" bindtap="addNumber" data-item-index="{{index}}">+</view>
+                  </view>
                 </view>
               </view>
-						</view>
-					</view>
-				</view>
-			</view>
-		</view>
-		<!-- 购物车信息 -->
-		<view wx:if="{{editStatus}}" class='shopping-bottom'>
-	    <view class='shopping-price'>
-	      <text class='shopping-cur'>￥</text>
-	      <text class='shopping-money'>{{priceSum}}</text>
-	    </view>
-	    <view  class='shopping-button' bindtap="goBooking">立即下单</view>
-	  </view>
-	  <view wx:else class='shopping-bottom'>
-	    <view  class='shopping-delete-button' bindtap="delProduct">删除</view>
-	  </view>
-	  <!-- 购物车为空 -->
-	  <view class="shopping-no" wx:if="{{carLeng}}">
-	  	<image src="../../static/images/no.png"></image>
-	  	<h2>购物车竟然是空的</h2>
-	  	<view>“再忙，也要记得出去玩哦~”</view>
-	  </view>
-	</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!--<view class="group-item">
+                <view class="header">
+                    <view class="promotion">
+                        <text class="tag">满赠</text>
+                        <text class="txt">再加26元, 3件赠1件蔓越莓干</text>
+                        <image class="icon" src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/go-b67cb9718d.png"></image>
+                    </view>
+                    <view class="get">领赠品</view>                
+                </view>
+                <view class="goods">
+                    <view class="item">
+                        <view class="checkbox" ></view>
+                        <view class="cart-goods">
+                            <image class="img" src="http://yanxuan.nosdn.127.net/04e05e9de3a471b1f6479dd137b459a8.png"></image>
+                            <view class="info">
+                                <view class="t">
+                                    <text class="name">秋冬保暖加厚细羊毛被</text>
+                                    <text class="num">x1</text>
+                                </view>
+                                <view class="attr">220*240cm</view>
+                                <view class="b">
+                                    <text class="price">￥199.99</text>
+                                    <view class="open">优惠活动</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>-->
+    </view>
+    <view class="cart-bottom">
+      <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="checkedAll">全选({{cartTotal.checkedGoodsCount}})</view>
+      <view class="total">{{!isEditCart ? '￥'+cartTotal.checkedGoodsAmount : ''}}</view>
+      <view class="delete" bindtap="editCart">{{!isEditCart ? '编辑' : '完成'}}</view>
+      <view class="checkout" bindtap="deleteCart" wx:if="{{isEditCart}}">删除所选</view>
+      <view class="checkout" bindtap="checkoutOrder" wx:if="{{!isEditCart}}">下单</view>
+    </view>
+  </view>
+</view>
