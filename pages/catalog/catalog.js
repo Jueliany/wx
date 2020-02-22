@@ -15,9 +15,9 @@ Page({
     ],
     categoryList: [],
     goodsList: [
-      { id: 1, list_pic_url: "http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png", name: '桌子', retail_price: 123, oldPrice: 299 },
-      { id: 1, list_pic_url: "http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png", name: '桌子', retail_price: 123, oldPrice: 299 },
-      { id: 1, list_pic_url: "http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png", name: '桌子', retail_price: 123, oldPrice: 299 },
+      { id: 1, list_pic_url: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg", name: '桌子', retail_price: 123, oldPrice: 299 },
+      { id: 1, list_pic_url: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg", name: '桌子', retail_price: 123, oldPrice: 299 },
+      { id: 1, list_pic_url: "https://cube.elemecdn.com/6/94/4d3ea53c084bad6931a56d5158a48jpeg.jpeg", name: '桌子', retail_price: 123, oldPrice: 299 },
       { id: 1, list_pic_url: "http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png", name: '桌子', retail_price: 123, oldPrice: 299 },
     ],
     currentCategory: {id: 1},

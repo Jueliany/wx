@@ -1,10 +1,6 @@
 //index.js
 //获取应用实例
 const app = getApp()
-//index.js
-// import { Base64 } from 'js-base64'
-//获取应用实例
-const app = getApp()
 
 Page({
   data: {
