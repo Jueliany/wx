@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    count:0,
     goodsCount: 0,
     choicenessGoods: [],
     hotGoods: [{
@@ -117,6 +118,12 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  //获得总数
+  getgoodsCount(){
+    var that = this;
+   
+  },
   //跳转页面
   goGoods(event) {
     let id = event.currentTarget.dataset.id;
@@ -128,6 +135,21 @@ Page({
   //热门商品加载
   getGoodsList() {
     var that = this;
+    wx.request({
+      url: api + "/mini/goods/count",
+      method: 'get',
+      data: {
+      },
+      success: (res) => {
+        console.log(1)
+        if (res.data.resultCode == 0) {
+          console.log(res.data)
+          that.setData({
+            goodsCount: res.data.data.count
+          })
+        }
+      },
+    })
     wx.request({
       url: api + "/mini/goods/hot",
       method: 'get',
