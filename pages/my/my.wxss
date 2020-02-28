@@ -28,16 +28,40 @@ page {
 
 
 
+.body_1 {
+  overflow: hidden;
+  background-color: #ffffff;
+  border-top: 1px solid #E6E6E6;
+  margin-bottom: 14rpx; 
+  /* position: relative; */
+}
 
-.body_txt1 {
+
+.order-b{
+  position: relative;
   padding: 30rpx 0;
   margin-left: 28rpx; 
   border-bottom: 1px solid #E6E6E6;
-  display: block;
+  display: flex;
   font-size: 28rpx;
   color: #1A1A1A;
+  justify-content: space-between;
 }
-
+.body_t1{
+  
+}
+.body_t2{
+  font-size: 22rpx;
+  color: #888;
+  margin-right: 50rpx;
+}
+.go-arrow1{
+  height: 22rpx;
+  width: 11rpx;
+  position: absolute;
+  top:34rpx;
+  right: 30rpx;
+}
 .body_shu {
   position: absolute;
   top: 10rpx; 
@@ -72,7 +96,10 @@ page {
   height:38rpx;
   margin: 24rpx 0 12rpx 0;
 }
-
+.order-l{
+  display: flex;
+  justify-content: space-around;
+}
 .views{
   font-size: 24rpx;
   color: #1A1A1A;

@@ -1,0 +1,24 @@
+{
+  "name": "wx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "js-base64": "^2.5.2",
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jueliany/wx.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jueliany/wx/issues"
+  },
+  "homepage": "https://github.com/Jueliany/wx#readme"
+}

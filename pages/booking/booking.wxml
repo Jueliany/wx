@@ -1,2 +1,58 @@
 <!--pages/booking/booking.wxml-->
-<text>pages/booking/booking.wxml</text>
+<view class="booking">
+  <view class="good-list">
+    <view class="item"  wx:for="{{goodsList}}" wx:key="item.id">
+      <view class="l">
+        <image src="{{item.url}}"></image>
+      </view>
+      <view class="c">
+        {{item.name}}
+      </view>
+      <view class="r">
+        <text class="price">￥{{item.price}}</text>
+        <text class="num">x{{item.num}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="remark">
+    <input placeholder="给商家留言.."></input>
+  </view>
+  <view class="local">
+    <view class="item-name">收货地址</view>
+    <view class="address" bindtap="chooseAddress">
+      <view class="a-l">
+        <image src="/static/images/local.png"> </image>
+      </view>
+      <view class="a-c">
+        <block wx:if="{{isAddress}}">
+          <view class="info">
+            <text>{{manname}}</text>
+            <text>{{phone}}</text>
+          </view>
+          <view class="detail">{{address}}</view>
+        </block>
+        <block wx:else>
+          <view class="info">请选择收货地址</view>
+        </block>
+      </view>
+      <image class="go-arrow" src="/static/images/go.png"></image>
+    </view>
+  </view>
+  <view class="pay">
+    <!-- <view class="p-item">
+      <text>商品总额</text>
+      <text>￥{{price}}</text>
+    </view>
+    <view class="p-item">
+      <text>运费</text>
+      <text>￥{{express}}</text>
+    </view> -->
+    
+    <view class="p-item ">
+      <text>总计</text>
+      <text class="p-p-n">￥{{sum}}</text>
+    </view>
+  </view>
+
+  <view class="pay-button" bindtap="bookingOrder">下单</view>
+</view>

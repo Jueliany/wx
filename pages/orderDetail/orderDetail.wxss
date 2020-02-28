@@ -1,1 +1,141 @@
 /* pages/orderDetail/orderDetail.wxss */
+
+
+.detail-container{
+  border-top: 20rpx solid #f8f8f8;
+}
+.detail-goods{
+  padding: 30rpx;
+  border-bottom: 20rpx solid #f8f8f8;
+}
+.order-goods{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+  justify-content: space-between;
+}
+.order-l{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+.order-goods image{
+ height: 160rpx;
+ width: 160rpx;
+}
+.order-name{
+  width: 370rpx;
+  font-size: 24rpx;
+  margin-left: 20rpx;
+  line-height: 40rpx;
+}
+.order-r{
+  text-align: right;
+}
+.order-price{
+  display: flex;
+  flex-direction: row;
+  line-height: 40rpx;
+}
+.fh{
+  font-size: 22rpx;
+}
+.order-goods-num{
+  font-size: 22rpx;
+  color: #888;
+  line-height: 40rpx;
+}
+.order-sum{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 40rpx;
+  font-size: 24rpx;
+  line-height: 32rpx;
+}
+.order-ppp{
+  color: #ff8800;
+  font-size: 28rpx;
+}
+
+.local{
+  border-bottom: 20rpx solid #f8f8f8;
+}
+.item-name{
+  font-size: 28rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #888;
+  padding-left: 30rpx;
+  border-bottom: 3rpx solid #e5e5e5;
+}
+.item-name text{
+  border-left: 4rpx solid #ff8800;
+  padding-left: 10rpx;
+}
+.address{
+  display: flex;
+  flex-direction: row;
+  min-height: 80rpx;
+  padding: 20rpx 30rpx;
+  position: relative;
+}
+.a-l image{
+  height: 36rpx;
+  width: 34rpx;
+  margin-right: 20rpx;
+  margin-top: 10rpx;
+}
+.a-c{
+  width: 600rpx;
+}
+.a-c view{
+}
+.go-arrow{
+  height: 26rpx;
+  width: 16rpx;
+  position: absolute;
+  top:30rpx;
+  right: 30rpx;
+}
+.order-i{
+  padding: 10rpx 30rpx;
+  border-bottom: 400rpx solid #f8f8f8;
+}
+.info text{
+  margin-right: 40rpx;
+}
+.info-it{
+  padding: 15rpx 0rpx;
+}
+.info-it text{
+  display: inline-block;
+  font-size: 22rpx;
+  color: #444;
+  margin-left: 15rpx;
+}
+.i-n{
+  width: 150rpx;
+}
+.d-b-b{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 18rpx 30rpx;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  border-top: 2rpx solid #e5e5e5;
+}
+.order-button{
+  height: 50rpx;
+  width: 150rpx;
+  border: 2rpx solid #e5e5e5;
+  border-radius: 25rpx;
+  line-height: 50rpx;
+  text-align: center;
+  font-size: 25rpx;
+  margin-left: 40rpx;
+}

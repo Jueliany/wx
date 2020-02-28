@@ -1,0 +1,82 @@
+<!--pages/orderDetail/orderDetail.wxml-->
+<view class="refund-container">
+
+  <view class="item-name"><text>订单信息</text></view>
+  <view class="detail-goods">
+    <view class="order-item-center">
+      <view class="order-goods" wx:for="{{goodsList}}">
+        <view class="order-l">
+          <image src="{{item.goods.url}}"></image>
+          <view class="order-name">{{item.goods.name}}</view>          
+        </view>
+        <view class="order-r">
+          <text class="order-price">
+            <text class="fh">￥</text>
+            <text>{{item.order_price}}</text>
+          </text>
+          <text class="order-goods-num">×{{item.goods_number}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="order-sum">
+      共计{{count}}件商品，合计：<view class="order-ppp">￥{{sum}}</view>
+    </view>
+  </view>
+  <view class="order-i">
+    <view class="info-it">
+      <text class="i-n">订单编号：</text>
+      <text>{{ordernum}}</text>
+    </view>
+    <view class="info-it">
+      <text class="i-n">下单时间：</text>
+      <text>{{created_at}}</text>
+    </view>
+    <view class="info-it" wx:if="{{pay_datetime.indexOf('date')>0}}">
+      <text class="i-n">支付时间：</text>
+      <text>{{pay_datetime}}</text>
+    </view>
+    <view class="info-it" wx:if="{{send_datetime.indexOf('date')>0}}">
+      <text class="i-n">发货时间：</text>
+      <text>{{send_datetime}}</text>
+    </view>
+    <view class="info-it" wx:if="{{get_datetime.indexOf('date')>0}}">
+      <text class="i-n">成交时间：</text>
+      <text>{{get_datetime}}</text>
+    </view>
+  </view>
+  <view class="local">
+    <view class="item-name"><text>收货地址</text></view>
+    <view class="address">
+      <view class="a-l">
+        <image src="/static/images/local.png"> </image>
+      </view>
+      <view class="a-c">
+        <view class="info">
+          <text>{{manname}}</text>
+          <text>{{phone}}</text>
+        </view>
+        <view class="detail">{{address}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="refund">
+    <view class="item-name"><text>退款信息</text></view>
+    <view class="refund-r">
+      <view>退款理由：</view>
+      <textarea bindinput="inputRefund" value="{{aftersale_remark}}" placeholder="请输入退款理由" focus="{{focus}}" />
+    </view>
+    <view wx:if="{{aftersale_state }}" class="refund-r">
+      <view>退款状态：</view>
+      <view wx:if="{{aftersale_state==1 }}">退款中</view>
+      <view wx:if="{{aftersale_state==2 }}">已经退款</view>
+      <view wx:if="{{aftersale_state==3 }}">拒绝退款</view>
+      <view wx:if="{{aftersale_state==5 }}">取消退款</view>
+    </view>
+  </view>
+  <view class="refund-b">
+    <view class="kf">联系客服</view>
+    <view class="sq" bindtap="refundOrder" wx:if="{{aftersale_state==0 ||aftersale_state==3 ||aftersale_state==5 }}">申请</view>
+    <view class="qx" bindtap="cancelRefund" wx:if="{{aftersale_state==1 }}">取消</view>
+  </view>
+</view>

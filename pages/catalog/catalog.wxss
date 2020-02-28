@@ -56,6 +56,7 @@ page {
 .catalog .nav {
   width: 162rpx;
   height: 100%;
+  background: #f1f1f1;
 }
 
 .catalog .nav .item {
@@ -65,13 +66,13 @@ page {
   height: 90rpx;
   color: #333;
   font-size: 28rpx;
-  border-left: 6rpx solid #fff;
+  border-bottom: 2rpx solid #e5e5e5;
+  /* border-left: 6rpx solid #fff; */
 }
 
 .catalog .nav .item.active {
   color: #ab2b2b;
-  font-size: 36rpx;
-  border-left: 6rpx solid #ab2b2b;
+  background: #fff;
 }
 
 .catalog .cate {
@@ -80,7 +81,6 @@ page {
   height: 100%;
   padding: 0 30rpx 0 30rpx;
 }
-
 .banner {
   display: block;
   height: 222rpx;
@@ -147,8 +147,8 @@ page {
   text-align: center;
 }
 .dd .item .img{
-  width: 250rpx;
-  height: 250rpx;
+  width: 240rpx;
+  height: 187rpx;
 }
 .dd .price-list{
   height: 30rpx;
@@ -160,4 +160,49 @@ page {
 }
 .dd .price{
   color: #b4282d;
+}
+
+.main-item {
+  display: flex;
+  flex-direction: row;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #e5e5e5;
+  padding-right: 20rpx;
+}
+
+.main-item image {
+  height: 120rpx;
+  width: 120rpx;
+  border-radius: 2rpx;
+}
+
+.main-item-right {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-left: 20rpx;
+  justify-content: space-between;
+}
+
+.main-title {
+  font-size: 24rpx;
+  color: #000;
+  line-height:45rpx;
+  margin-top: 5rpx;
+  display:-webkit-box;
+-webkit-box-orient:vertical;
+-webkit-line-clamp:2;
+overflow:hidden;
+}
+.main-rb{
+  display: flex;
+  justify-content: space-between;
+}
+.main-num{
+  font-size: 28rpx;
+  color: #888;
+}
+.main-price {
+  font-size: 30rpx;
+  color: red;
 }

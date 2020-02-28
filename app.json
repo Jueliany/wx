@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/main/main",
-    "pages/index/index",
     "pages/topic/topic",
     "pages/catalog/catalog",
     "pages/cart/cart",
@@ -13,7 +12,10 @@
     "pages/orderDetail/orderDetail",
     "pages/orderList/orderList",
     "pages/coupon/coupon",
-    "pages/address/address"
+    "pages/address/address",
+    "pages/pay/pay",
+    "pages/refund/refund",
+    "pages/evaluate/evaluate"
   ],
   "window": {
     "backgroundTextStyle": "light",

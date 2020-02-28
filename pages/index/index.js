@@ -1,4 +1,5 @@
 //index.js
+import { Base64 } from 'js-base64'
 //获取应用实例
 const app = getApp()
 
@@ -60,9 +61,8 @@ Page({
     })
   },
   _encode() {
-    // const token = wx.getStorageSync('token')
-    // const base64 = Base64.encode(token + ":")
-    // return 'Basic ' + base64
+    const token = wx.getStorageSync('token')
+    const base64 = Base64.encode(token + ":")
+    return 'Basic ' + base64
   }
 })
-

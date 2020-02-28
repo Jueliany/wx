@@ -1,13 +1,21 @@
 // pages/my/my.js
-
-
+const { api } = require('../../utils/util.js')
+import { Base64 } from 'js-base64'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    pic: ''
+    pic: '',
+    // 订单 待付款 退款订单
+    item: [
+      { content: '待付款', image: 'https://file.quhappy.com/images/img/icon3.png', orderType: '0', num: 0 },
+      { content: '发货中', image: 'https://file.quhappy.com/images/img/icon14.png', orderType: '1', num: 0 },
+      { content: '已发货', image: 'https://file.quhappy.com/images/img/icon2.png', orderType: '2', num: 0 },
+      { content: '评价', image: 'https://file.quhappy.com/images/img/icon1.png', orderType: 3, num: 0 },
+      // { content: '售后', image: 'https://file.quhappy.com/images/img/icon4.png', orderType: '4', num: 0 }
+    ],
   },
 
   /**
@@ -28,7 +36,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getInfo();
   },
 
   /**
@@ -89,6 +97,14 @@ Page({
       }
     })
   },
+  //去订单页
+  goOrder(event){
+    let type = event.currentTarget.dataset.type;
+    console.log(event.currentTarget)
+    wx.navigateTo({
+      url: '/pages/orderList/orderList?type=' + type
+    })
+  },
   getpp: function(){
     wx.getSetting({
       success(res) {
@@ -104,11 +120,39 @@ Page({
       }
     })
   },
+  //管理收货地址
+  chooseAddress: function () {
+    var that = this;
+    if (wx.chooseAddress) {
+      wx.chooseAddress({
+        success: function (res) {
+          console.log(JSON.stringify(res));
+          console.log(res);
+          that.setData({
+            "add_userName": res.userName,
+            "add_telNumber": res.telNumber,
+            "add_provinceName": res.provinceName,
+            "add_cityName": res.cityName,
+            "add_countyName": res.countyName,
+            "add_detailInfo": res.detailInfo,
+            "add_postalCode": res.postalCode,
+            //具体收货地址显示
+            flag: false,
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+          })
+        },
+        fail: function (err) {
+          console.log(JSON.stringify(err));
+          console.info("收货地址授权失败");
+          // wx.showToast({
+          //   title: '授权失败，您将无法进行下单支付;重新授权请删除小程序后再次进入',
+          //   icon: 'success',
+          //   duration: 2000
+          // })
+        }
+      })
+    } else {
+      console.log('当前微信版本不支持chooseAddress');
+    }
+  },
 })

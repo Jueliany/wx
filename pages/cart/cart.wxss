@@ -105,6 +105,7 @@ page{
 }
 
 .cart-view .item .cart-goods{
+    position: relative;
     float: left;
     height: 164rpx;
     width: 672rpx;
@@ -137,7 +138,7 @@ page{
 
 .cart-view .item .name{
     height: 28rpx;
-    max-width: 310rpx;
+    max-width: 300rpx;
     line-height: 28rpx;
     font-size: 25rpx;
     color: #333;
@@ -145,9 +146,11 @@ page{
 }
 
 .cart-view .item .num{
+    position: absolute;
+    right: 20rpx;
+    top: 25rpx;
     height: 28rpx;
     line-height: 28rpx;
-    float: right;
 }
 
 .cart-view .item .attr{

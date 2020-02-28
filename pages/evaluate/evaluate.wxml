@@ -1,0 +1,22 @@
+
+<view class="booking">
+  <view class="good-list">
+    <view class="item"  wx:for="{{goodsList}}" wx:key="item.id">
+      <view class="l">
+        <image src="{{item.goods.url}}"></image>
+      </view>
+      <view class="c">
+        {{item.goods.name}}
+      </view>
+      <!-- <view class="r">
+        <text class="price">￥{{item.goods.price}}</text>
+        <text class="num">x{{item.num}}</text>
+      </view> -->
+    </view>
+  </view>
+  <view class="ev">
+    <textarea  bindinput="inputEv" value="{{evaluate}}" placeholder="请输入评价" focus="{{focus}}" />
+  </view>
+ 
+  <view class="pay-button" bindtap="creatEvaluate">提交</view>
+</view>

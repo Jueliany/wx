@@ -1,4 +1,6 @@
 // pages/search/search.js
+const { api } = require('../../utils/util.js')
+import { Base64 } from 'js-base64'
 Page({
 
   /**
@@ -22,7 +24,15 @@ Page({
     currentSortType: 'default',
     currentSortOrder: '',
     filterCategory: [
-      {id: 1, name: '电脑'}
+      { id: -1, name: '全部' },
+      { id: 2, name: '数码音响' },
+      { id: 3, name: '家用电器' },
+      { id: 4, name: '首饰包包' },
+      { id: 5, name: '电脑器材' },
+      { id: 6, name: '手机平板' },
+      { id: 7, name: '时尚手表' },
+      { id: 8, name: '美食酒类' },
+      { id: 9, name: '化妆护肤' },
     ],
     defaultKeyword: {},
     page: 1,
@@ -43,14 +53,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getGoodsList();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
@@ -87,6 +97,33 @@ Page({
   onShareAppMessage: function () {
 
   },
+
+  //搜索输入
+  inputChange(e){
+    let value = e.detail.value
+    this.setData({ keywrod: value})
+  },
+  //获得商品
+  getGoodsList(){
+    var that = this;
+    wx.request({
+      url: api + "/mini/goods/list",
+      method: 'post',
+      data: {
+        order: that.data.currentSortType == "default" ? that.data.currentSortType : that.data.currentSortOrder,
+        category: that.data.categoryId,
+        keyWord: that.data.keywrod
+      },
+      success: (res) => {
+        if (res.data.resultCode == 0) {
+          console.log(res.data)
+          that.setData({
+            goodsList: res.data.data
+          })
+        }
+      },
+    })
+  },
   // 点击分类
   openSortFilter: function (event) {
     let currentId = event.currentTarget.id;
@@ -118,6 +155,7 @@ Page({
           'categoryFilter': false
         });
     }
+    this.getGoodsList();
   },
   // 选择分类
   selectCategory: function (event) {
@@ -139,5 +177,11 @@ Page({
       page: 1,
       goodsList: []
     });
+    this.getGoodsList();
   },
+  _encode() {
+    const token = wx.getStorageSync('token')
+    const base64 = Base64.encode(token + ":")
+    return 'Basic ' + base64
+  }
 })

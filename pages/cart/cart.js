@@ -1,47 +1,31 @@
 
 
 var app = getApp();
+const { api } = require('../../utils/util.js')
+import { Base64 } from 'js-base64'
 
 Page({
   data: {
-    cartGoods: [{
-      "id": 1,
-      "user_id": 0,
-      "session_id": "1",
-      "goods_id": 1116011,
-      "goods_sn": "1116011",
-      "product_id": 167,
-      "goods_name": "蔓越莓曲奇 200克",
-      "market_price": 36,
-      "retail_price": 36,
-      "number": 3,
-      "goods_specifition_name_value": "",
-      "goods_specifition_ids": "",
-      "checked": 0,
-      "list_pic_url": "http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png"
-    }],
-    cartTotal: {
-      "goodsCount": 0,
-      "goodsAmount": 0.00,
-      "checkedGoodsCount": 0,
-      "checkedGoodsAmount": 0.00
-    },
+    cartGoods: [],
+    checkedGoodsCount:0,
+    checkedGoodsAmount:0,
+    count:100,
     isEditCart: false,
-    checkedAllStatus: true,
+    checkedAllStatus: false,
     editCartList: []
   },
+
   onLoad: function (options) {
-    // 页面初始化 options为页面跳转所带来的参数
-
-
+    
   },
   onReady: function () {
     // 页面渲染完成
+    
 
   },
   onShow: function () {
     // 页面显示
-    // this.getCartList();
+    this.getCartList();
   },
   onHide: function () {
     // 页面隐藏
@@ -53,19 +37,29 @@ Page({
   },
   getCartList: function () {
     let that = this;
-    util.request(api.CartList).then(function (res) {
-      if (res.errno === 0) {
-        console.log(res.data);
-        that.setData({
-          cartGoods: res.data.cartList,
-          cartTotal: res.data.cartTotal
-        });
+    wx.request({
+      url: api + "/mini/cart/list",
+      method: 'post',
+      data: {
+      },
+      success: (res) => {
+        if (res.data.resultCode == 0) {
+          let list = res.data.data.map(item =>{
+            item.checked = 0;
+            return item 
+          });
+
+          that.setData({
+            cartGoods: list
+          })
+        }
+        console.log(res.data)
+
+      },
+      header: {
+        Authorization: this._encode()
       }
-      that.setData({
-        cartGoods: res.data.cartLists,
-        checkedAllStatus: that.isCheckedAll()
-      });
-    });
+    })
   },
   isCheckedAll: function () {
     //判断购物车商品已全选
@@ -77,73 +71,74 @@ Page({
       }
     });
   },
+  //获得选中 总数
+  getCheckedGoodsAmount: function () {
+    let checkedGoodsAmount = 0;
+    this.data.cartGoods.forEach(function (v) {
+      if (v.checked == true) {
+        console.log
+        checkedGoodsAmount += v.number * 100 * parseFloat(v.goods.price)/100;
+      }
+    });
+    return checkedGoodsAmount;
+  },
+  //获得选中总额
+  getCheckedGoodsCount: function () {
+    let checkedGoodsCount = 0;
+    this.data.cartGoods.forEach(function (v) {
+      if (v.checked == true) {
+        checkedGoodsCount += v.number;
+      }
+    });
+    return checkedGoodsCount;
+  },
   checkedItem: function (event) {
     let itemIndex = event.target.dataset.itemIndex;
     let that = this;
-
     if (!this.data.isEditCart) {
-      // util.request(api.CartChecked, { productIds: that.data.cartGoods[itemIndex].product_id, isChecked: that.data.cartGoods[itemIndex].checked ? 0 : 1 }, 'POST').then(function (res) {
-      //   if (res.errno === 0) {
-      //     console.log(res.data);
-      //     that.setData({
-      //       cartGoods: res.data.cartList,
-      //       cartTotal: res.data.cartTotal
-      //     });
-      //   }
-      // });
-      console.log(that.data.cartGoods)
       var cartLists = that.data.cartGoods;
       cartLists[itemIndex].checked = that.data.cartGoods[itemIndex].checked ? 0 : 1;
       that.setData({
         cartGoods: cartLists,
-        checkedAllStatus: that.isCheckedAll()
+        checkedAllStatus: that.isCheckedAll(), 
+        checkedGoodsCount: that.getCheckedGoodsCount(),
+        checkedGoodsAmount: that.getCheckedGoodsAmount()
       });
+      console.log(110)
     } else {
       //编辑状态
       let tmpCartData = this.data.cartGoods.map(function (element, index, array) {
         if (index == itemIndex) {
           element.checked = !element.checked;
         }
-
         return element;
       });
 
       that.setData({
         cartGoods: tmpCartData,
         checkedAllStatus: that.isCheckedAll(),
-        'cartTotal.checkedGoodsCount': that.getCheckedGoodsCount()
+        checkedGoodsCount: that.getCheckedGoodsCount()
       });
     }
   },
-  getCheckedGoodsCount: function () {
-    let checkedGoodsCount = 0;
-    this.data.cartGoods.forEach(function (v) {
-      if (v.checked === true) {
-        checkedGoodsCount += v.number;
-      }
-    });
-    console.log(checkedGoodsCount);
-    return checkedGoodsCount;
-  },
+  //全选
   checkedAll: function () {
     let that = this;
-
     if (!this.data.isEditCart) {
-      var productIds = this.data.cartGoods.map(function (v) {
-        return v.product_id;
-      });
-      util.request(api.CartChecked, { productIds: productIds.join(','), isChecked: that.isCheckedAll() ? 0 : 1 }, 'POST').then(function (res) {
-        if (res.errno === 0) {
-          console.log(res.data);
-          that.setData({
-            cartGoods: res.data.cartList,
-            cartTotal: res.data.cartTotal
-          });
+      let list = this.data.cartGoods.map(item =>{
+        if (this.data.checkedAllStatus){
+          item.checked = 0
+        }else{
+          item.checked = 1
         }
-
-        that.setData({
-          checkedAllStatus: that.isCheckedAll()
-        });
+        return item;
+      })
+      
+      that.setData({
+        cartGoods: list,
+        checkedAllStatus: that.isCheckedAll(),
+        checkedGoodsCount: that.getCheckedGoodsCount(),
+        checkedGoodsAmount: that.getCheckedGoodsAmount()
       });
     } else {
       //编辑状态
@@ -156,11 +151,12 @@ Page({
       that.setData({
         cartGoods: tmpCartData,
         checkedAllStatus: that.isCheckedAll(),
-        'cartTotal.checkedGoodsCount': that.getCheckedGoodsCount()
+        checkedGoodsCount: that.getCheckedGoodsCount()
       });
     }
 
   },
+  //编辑购物车
   editCart: function () {
     var that = this;
     if (this.data.isEditCart) {
@@ -179,32 +175,33 @@ Page({
         cartGoods: tmpCartList,
         isEditCart: !this.data.isEditCart,
         checkedAllStatus: that.isCheckedAll(),
-        'cartTotal.checkedGoodsCount': that.getCheckedGoodsCount()
+        checkedGoodsCount: that.getCheckedGoodsCount()
       });
     }
 
   },
-  updateCart: function (productId, goodsId, number, id) {
+  updateCart: function (gid,number) {
     let that = this;
-
-    util.request(api.CartUpdate, {
-      productId: productId,
-      goodsId: goodsId,
-      number: number,
-      id: id
-    }, 'POST').then(function (res) {
-      if (res.errno === 0) {
-        console.log(res.data);
-        that.setData({
-          //cartGoods: res.data.cartList,
-          //cartTotal: res.data.cartTotal
-        });
+    wx.request({
+      url: api + "/mini/cart/update",
+      method: 'post',
+      data: {
+        id:gid,
+        num: { number}
+      },
+      success: (res) => {
+        if (res.data.resultCode == 0) {
+          that.setData({
+            checkedAllStatus: that.isCheckedAll()
+          });
+        }
+      },
+      header: {
+        Authorization: this._encode()
       }
+    })
 
-      that.setData({
-        checkedAllStatus: that.isCheckedAll()
-      });
-    });
+      
 
   },
   cutNumber: function (event) {
@@ -216,7 +213,7 @@ Page({
     this.setData({
       cartGoods: this.data.cartGoods
     });
-    this.updateCart(cartItem.product_id, cartItem.goods_id, number, cartItem.id);
+    this.updateCart(cartItem.id, number);
   },
   addNumber: function (event) {
     let itemIndex = event.target.dataset.itemIndex;
@@ -226,20 +223,18 @@ Page({
     this.setData({
       cartGoods: this.data.cartGoods
     });
-    this.updateCart(cartItem.product_id, cartItem.goods_id, number, cartItem.id);
+    this.updateCart(cartItem.id, number);
 
   },
   checkoutOrder: function () {
     //获取已选择的商品
     let that = this;
 
-    var checkedGoods = this.data.cartGoods.filter(function (element, index, array) {
-      if (element.checked == true) {
-        return true;
-      } else {
-        return false;
+    var checkedGoods = this.data.cartGoods.map(item=>{
+      if(item.checked){
+        return { id: item.goods.id, num:item.number, cartId:item.id}
       }
-    });
+    }).filter( item => {return item});
 
     if (checkedGoods.length <= 0) {
       return false;
@@ -247,52 +242,48 @@ Page({
 
 
     wx.navigateTo({
-      url: '../shopping/checkout/checkout'
+      url: '/pages/booking/booking?goods=' + JSON.stringify(checkedGoods)
     })
   },
   deleteCart: function () {
     //获取已选择的商品
     let that = this;
 
-    let productIds = this.data.cartGoods.filter(function (element, index, array) {
-      if (element.checked == true) {
-        return true;
-      } else {
-        return false;
+    let ids = this.data.cartGoods.map(item=>{
+      if(item.checked){
+        return item.id
       }
-    });
+    })
 
-    if (productIds.length <= 0) {
+    if (ids.length <= 0) {
       return false;
     }
 
-    productIds = productIds.map(function (element, index, array) {
-      if (element.checked == true) {
-        return element.product_id;
+    wx.request({
+      url: api + "/mini/cart/delete",
+      method: 'post',
+      data: {
+        ids
+      },
+      success: (res) => {
+        if (res.data.resultCode == 0) {
+          let list = res.data.data.map(item => {
+            item.checked = 0;
+            return item
+          });
+          that.setData({
+            cartGoods: list
+          })
+        }
+      },
+      header: {
+        Authorization: this._encode()
       }
-    });
-
-
-    util.request(api.CartDelete, {
-      productIds: productIds.join(',')
-    }, 'POST').then(function (res) {
-      if (res.errno === 0) {
-        console.log(res.data);
-        let cartList = res.data.cartList.map(v => {
-          console.log(v);
-          v.checked = false;
-          return v;
-        });
-
-        that.setData({
-          cartGoods: cartList,
-          cartTotal: res.data.cartTotal
-        });
-      }
-
-      that.setData({
-        checkedAllStatus: that.isCheckedAll()
-      });
-    });
+    })
+  },
+  _encode() {
+    const token = wx.getStorageSync('token')
+    const base64 = Base64.encode(token + ":")
+    return 'Basic ' + base64
   }
 })

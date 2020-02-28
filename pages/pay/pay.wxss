@@ -1,0 +1,132 @@
+/* pages/booking/booking.wxss */
+.booking{
+
+}
+.good-list{
+  background-color: #fff;
+}
+.booking .item{
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: row;
+  height: 180rpx;
+  padding: 15rpx;
+  box-sizing: border-box;
+  justify-content: space-between;
+  border-top: 10rpx solid #fff;
+}
+.l{
+
+}
+.item image{
+  height: 150rpx;
+  width: 150rpx;
+}
+.c{
+  font-size: 24rpx;
+  margin: 0 20rpx;
+  width: 400rpx;
+}
+.r{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.price{
+  text-align: right;
+  font-size: 22rpx;
+  line-height: 41rpx;
+}
+.num{
+  text-align: right;
+  font-size: 22rpx;
+  color: #888;
+}
+.booking .remark{
+  background-color: #fff;
+  padding:20rpx 40rpx;
+  border-bottom: 20rpx solid #f8f8f8;
+}
+.booking .remark text{
+  margin-right: 20px;
+}
+
+.local{
+  border-bottom: 20rpx solid #f8f8f8;
+}
+.item-name{
+  font-size: 28rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #888;
+  padding-left: 30rpx;
+  border-bottom: 3rpx solid #e5e5e5;
+}
+.address{
+  display: flex;
+  flex-direction: row;
+  min-height: 80rpx;
+  padding: 20rpx 30rpx;
+  position: relative;
+}
+.a-l image{
+  height: 36rpx;
+  width: 34rpx;
+  margin-right: 20rpx;
+  margin-top: 10rpx;
+}
+.a-c{
+  width: 600rpx;
+}
+.a-c view{
+}
+.go-arrow{
+  height: 26rpx;
+  width: 16rpx;
+  position: absolute;
+  top:30rpx;
+  right: 30rpx;
+}
+.info{
+  line-height: 50rpx;
+}
+.info text{
+  margin-right: 40rpx;
+  font-size: 28rpx;
+}
+.detail{
+  font-size: 22rpx;
+}
+.pay{
+  padding: 20rpx 30rpx;
+  border-bottom: 400rpx solid #f8f8f8;
+}
+.p-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  line-height: 50rpx;
+}
+.p-item text{
+ font-size: 28rpx;
+}
+.p-p{
+  border-top: 2rpx solid #e5e5e5;
+  padding-top: 10rpx;
+}
+.p-p-n{
+  color: #ff8800;
+}
+
+.pay-button{
+  height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 34rpx;
+  background-color: #ff8800;
+  color: #fff;
+}

@@ -1,4 +1,6 @@
 // pages/main/main.js
+const { api } = require('../../utils/util.js')
+
 Page({
 
   /**
@@ -6,7 +8,7 @@ Page({
    */
   data: {
     goodsCount: 0,
-    newGoods: [],
+    choicenessGoods: [],
     hotGoods: [{
       "id": 22,
       "productTitle": "Apple iPhone 7 Plus (A1661) 128G 黑色 移动联通电信4G手机",
@@ -55,9 +57,6 @@ Page({
     brands: [],
     floorGoods: [],
     banner: [
-      { id: 1, image_url: "http://yanxuan.nosdn.127.net/65091eebc48899298171c2eb6696fe27.jpg"},
-      { id: 2, image_url: "http://yanxuan.nosdn.127.net/bff2e49136fcef1fd829f5036e07f116.jpg"},
-      { id: 3, image_url: "http://yanxuan.nosdn.127.net/8e50c65fda145e6dd1bf4fb7ee0fcecc.jpg"}
     ],
     channel: []
   },
@@ -73,7 +72,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getBanner();
+    this.getGoodsList();
   },
 
   /**
@@ -116,5 +116,69 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  //跳转页面
+  goGoods(event) {
+    let id = event.currentTarget.dataset.id;
+    console.log(event.currentTarget)
+    wx.navigateTo({
+      url: '/pages/goods/goods?id='+id
+    })
+  },
+  //热门商品加载
+  getGoodsList() {
+    var that = this;
+    wx.request({
+      url: api + "/mini/goods/hot",
+      method: 'get',
+      data: {
+      },
+      success: (res) => {
+        console.log(1)
+        if (res.data.resultCode == 0) {
+          console.log(res.data)
+          that.setData({
+            hotGoods: res.data.data
+          })
+        }
+      },
+    })
+    wx.request({
+      url: api + "/mini/goods/choiceness",
+      method: 'get',
+      data: {
+      },
+      success: (res) => {
+        console.log(1)
+        if (res.data.resultCode == 0) {
+          console.log(res.data)
+          that.setData({
+            choicenessGoods: res.data.data
+          })
+        }
+      },
+    })
+  },
+  //轮播图加载
+  getBanner() {
+    var that = this;
+    wx.request({
+      url: api + "/v1/banner/mini/list",
+      method: 'get',
+      data: {
+      },
+      success: (res) => {
+        if (res.data.resultCode == 0) {
+          that.setData({
+            banner: res.data.data.rows
+          })
+        }
+      },
+      // header: {
+      //   Authorization: this._encode()
+      // }
+    })
+  },
+
+
 })

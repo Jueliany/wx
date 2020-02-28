@@ -10,7 +10,21 @@ App({
     // 登录
     wx.login({
       success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        wx.request({
+          url: "http://192.168.0.106:3000/v1/token",
+          method: 'POST',
+          data: {
+            account: res.code,
+            type: 100
+          },
+          success: (res) => {
+            console.log(res)
+            const code = res.statusCode.toString();
+            if (code.startsWith(2)) {
+              wx.setStorageSync('token', res.data.token)
+            }
+          }
+        })
       }
     })
     // 获取用户信息
@@ -22,7 +36,7 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               this.globalData.userInfo = res.userInfo
-
+              console.log(res.userInfo)
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {

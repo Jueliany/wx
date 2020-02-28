@@ -11,6 +11,8 @@
 		"newFeature": true,
 		"coverView": true,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -18,12 +20,13 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"nodeModules": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.4",
-	"appid": "wx245f6eb0d99bc5a7",
-	"projectname": "base-shop-demo",
+	"appid": "wx61ff1358aeb3c755",
+	"projectname": "wx",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -56,9 +59,44 @@
 			"list": [
 				{
 					"id": 0,
+					"name": "pages/pay/pay",
+					"pathName": "pages/pay/pay",
+					"query": "ordernum= WX202022517473479366",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/goods/goods",
+					"pathName": "pages/goods/goods",
+					"query": "id=40",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "pages/my/my",
+					"pathName": "pages/my/my",
+					"query": "id=40",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "pages/booking/booking",
+					"pathName": "pages/booking/booking",
+					"query": "goods= [{\"id\":40,\"num\":1}]",
+					"scene": null
+				},
+				{
+					"id": 4,
 					"name": "pages/orderList/orderList",
 					"pathName": "pages/orderList/orderList",
-					"query": "",
+					"query": "type=-1",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "pages/refund/refund",
+					"pathName": "pages/refund/refund",
+					"query": "ordernum=WX202022519481977686",
 					"scene": null
 				}
 			]

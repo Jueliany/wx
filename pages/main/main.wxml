@@ -9,9 +9,9 @@
   </view>
   <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
     <swiper-item wx:for="{{banner}}" wx:key="{{item.id}}">
-      <navigator url="{{item.link}}">
-        <image src="{{item.image_url}}" background-size="cover"></image>
-      </navigator>
+      <view bindtap="goGoods" data-id="{{item.goods_id}}" >
+        <image src="{{item.pic_url}}" background-size="cover"></image>
+      </view>
     </swiper-item>
   </swiper>
   <image class="main-im"  mode='widthFix' src="../../static/images/main.jpg"></image>
@@ -25,16 +25,40 @@
       <block wx:for="{{hotGoods}}" wx:key="*this">
         <!-- 普通商品 -->
         <block >
-          <navigator class='main-item' url="/pages/goods/goods" data-id="{{item.id}}" >
-            <image src='{{item.productPicURL}}'></image>
+          <view class='main-item' bindtap="goGoods" data-id="{{item.id}}" >
+            <image src='{{item.url}}'></image>
             <view class='main-item-right'>
-              <text class='main-title'>{{item.productTitle}}</text>
+              <text class='main-title'>{{item.name}}</text>
               <view >
                 <text class='main-price'>￥{{item.price}}</text>
-                <text class='old-price'>￥{{item.price}}</text>
+                <text class='old-price'>￥{{item.old_price}}</text>
               </view>
             </view>
-          </navigator>
+          </view>
+        </block>
+      </block>
+    </view>
+  </view>
+  <view class="main-hot">
+    <view class="main-hot-top">
+      <image class="pic-left-d" src="../../static/images/home_point.png"></image>
+      <text>精选商品</text>
+      <image src="../../static/images/home_point.png"></image>
+    </view>
+     <view class='main-list'>
+      <block wx:for="{{choicenessGoods}}" wx:key="*this">
+        <!-- 普通商品 -->
+        <block >
+          <view class='main-item' bindtap="goGoods" data-id="{{item.id}}" >
+            <image src='{{item.url}}'></image>
+            <view class='main-item-right'>
+              <text class='main-title'>{{item.name}}</text>
+              <view >
+                <text class='main-price'>￥{{item.price}}</text>
+                <text class='old-price'>￥{{item.old_price}}</text>
+              </view>
+            </view>
+          </view>
         </block>
       </block>
     </view>

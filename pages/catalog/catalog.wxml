@@ -1,23 +1,19 @@
 <!--pages/catalog/catalog.wxml-->
 <view class="container">
-  <view class="search">
-    <navigator url="/pages/search/search" class="input">
-      <image class="icon"></image>
-      <text class="txt">商品搜索, 共{{goodsCount}}款好物</text>
-    </navigator>
-  </view>
   <view class="catalog">
     <scroll-view class="nav" scroll-y="true">
-        <view class="item {{ currentCategory.id == item.id ? 'active' : ''}}" wx:for="{{navList}}"  data-id="{{item.id}}" data-index="{{index}}" bindtap="switchCate">{{item.name}}</view>
+        <view class="item {{ currentCategory == item.id ? 'active' : ''}}" wx:for="{{navList}}"  data-id="{{item.id}}" data-index="{{index}}" bindtap="switchCate">{{item.name}}</view>
     </scroll-view>
     <scroll-view class="cate" scroll-y="true">
-        <view class="dd">
-          <navigator class="item {{(iindex + 1) % 2 == 0 ? 'item-b' : ''}}" url="/pages/goods/goods?id={{iitem.id}}" wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex">
-            <image class="img" src="{{iitem.list_pic_url}}" background-size="cover"></image>
-            <text class="name">{{iitem.name}}</text>
-            <view class="price-list">
-              <text class="old-price">￥{{iitem.retail_price}}</text>
-              <text class="price">￥{{iitem.retail_price}}</text>
+        <view class="dl">
+          <navigator class='main-item' wx:for="{{goodsList}}" wx:key="*this" url="/pages/goods/goods" data-id="{{item.id}}" >
+            <image src='{{item.url}}'></image>
+            <view class='main-item-right'>
+              <text class='main-title'>{{item.name}}</text>
+              <view class="main-rb">
+                <text class='main-price'>￥{{item.price}}</text>
+                <text class='main-num'>已售{{item.sold_number}}</text>
+              </view>
             </view>
           </navigator>
         </view>

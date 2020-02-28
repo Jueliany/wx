@@ -230,7 +230,7 @@ page{
 }
 
 .cate-item{
-    margin-top: 100rpx;
+    margin-top: 130rpx;
     height: auto;
     overflow: hidden;
 }
@@ -289,6 +289,7 @@ page{
 }
 
 .cate-item .item .img{
+  margin-top: 30rpx;
   width: 302rpx;
   height: 302rpx;
 }

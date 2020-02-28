@@ -1,4 +1,5 @@
 // pages/topic/topic.js
+const { api } = require('../../utils/util.js')
 Page({
 
   /**
@@ -6,10 +7,6 @@ Page({
    */
   data: {
     goodsList: [
-      { id: 1, list_pic_url: "http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png", name: '桌子', retail_price: 123, oldPrice: 299 },
-      { id: 1, list_pic_url: "http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png", name: '桌子', retail_price: 123, oldPrice: 299 },
-      { id: 1, list_pic_url: "http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png", name: '桌子', retail_price: 123, oldPrice: 299 },
-      { id: 1, list_pic_url: "http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png", name: '桌子', retail_price: 123, oldPrice: 299 },
     ],
   },
 
@@ -24,7 +21,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getNewGoodsList();
   },
 
   /**
@@ -67,5 +64,26 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  //获取列表
+  getNewGoodsList() {
+    var that = this;
+    var data = {
+    }
+    console.log(data)
+    wx.request({
+      url: api + "/mini/goods/new",
+      method: 'get',
+      success: (res) => {
+        if (res.data.resultCode == 0) {
+          that.setData({
+            goodsList: res.data.data
+          })
+          console
+        }
+      },
+    })
   }
+  
 })

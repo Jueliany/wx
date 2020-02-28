@@ -279,54 +279,30 @@
 }
 
 .goods-attr {
-  width: 750rpx;
+  width: 100%;
   height: auto;
   overflow: hidden;
   padding: 0 31.25rpx 25rpx 31.25rpx;
   background: #fff;
+  display: flex;
+  justify-content: space-around;
 }
-
-.goods-attr .t {
-  width: 687.5rpx;
-  height: 104rpx;
-  line-height: 104rpx;
-  font-size: 38.5rpx;
+.goods-attr .t{
+  font-size: 32rpx;
+  padding: 20rpx;
+  width: 200rpx;
+  text-align: center;
 }
-
-.goods-attr .item {
-  width: 687.5rpx;
-  height: 68rpx;
-  padding: 11rpx 20rpx;
-  margin-bottom: 11rpx;
-  background: #f7f7f7;
-  font-size: 38.5rpx;
-}
-
-.goods-attr .left {
-  float: left;
-  font-size: 25rpx;
-  width: 134rpx;
-  height: 45rpx;
-  line-height: 45rpx;
-  overflow: hidden;
-  color: #999;
-}
-
-.goods-attr .right {
-  float: left;
-  font-size: 36.5rpx;
-  margin-left: 20rpx;
-  width: 480rpx;
-  height: 45rpx;
-  line-height: 45rpx;
-  overflow: hidden;
-  color: #333;
+.actives{
+  color: #ff8800;
+  border-bottom: 2rpx solid #ff8800;
 }
 
 .detail {
   width: 750rpx;
   height: auto;
   overflow: hidden;
+  background-color: #fff;
 }
 
 .detail image {
@@ -773,4 +749,23 @@
 }
 .info .info-num view{
   color: #a8a8a8;
+}
+
+.feedback-item {
+    margin-top: 10rpx;
+    padding-top: 20rpx;
+    background-color: #fff;
+    padding-left: 30rpx;
+    padding-right: 30rpx;
+}
+.feedback-text {
+    font-size: 22rpx;
+    color: #1a1a1a;
+    line-height: 36rpx;
+}
+.feedback-date {
+    font-size: 24rpx;
+    margin-top: 10rpx;
+    color: gray;
+    padding-bottom: 40rpx;
 }
